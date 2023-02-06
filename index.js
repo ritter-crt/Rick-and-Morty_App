@@ -60,8 +60,11 @@ searchBar.addEventListener("submit", (event) => {
   cardContainer.innerHTML = "";
   event.preventDefault();
   const formData = new FormData(event.target);
-  searchQuery = Object.fromEntries(formData);
-  fetchCharacters(searchQuery.query)
+  const { query } = Object.fromEntries(formData);
+  console.log(query)
+  searchQuery = query
+  page = 1
+  fetchCharacters(query, page)
 });
 
 // ____________________________Searchbar
@@ -70,13 +73,16 @@ searchBar.addEventListener("submit", (event) => {
 prevButton.addEventListener('click', () => {
   cardContainer.innerHTML = ''
   page--
-  fetchCharacters('', page)
+  if (page < 1) {
+    page = 1
+  }
+  fetchCharacters(searchQuery, page)
 })
 
 nextButton.addEventListener('click', () => {
   cardContainer.innerHTML = ''
   page++
-  fetchCharacters('', page)
+  fetchCharacters(searchQuery, page)
 })
 
 fetchCharacters("", page);
