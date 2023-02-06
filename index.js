@@ -19,9 +19,19 @@ async function fetchCharacters(searchQuery, pageNumber) {
   try {
     const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${searchQuery}&page=${pageNumber}`);
     const data = await response.json();
+
+    const refactoredData = data.results.map(character => {
+      return {
+        name: character.name,
+        image: character.image,
+        status: character.status,
+        type: character.type,
+        occurences: character.episode.length
+      }
+    })
     maxPage = data.info.pages
     pagination.textContent = `${page}/${maxPage}`
-    data.results.forEach((character) => {
+    refactoredData.forEach((character) => {
       const characterCard = createCharacterCard(character);
       cardContainer.append(characterCard);
     });
@@ -36,7 +46,7 @@ searchBar.addEventListener("submit", (event) => {
   cardContainer.innerHTML = "";
   event.preventDefault();
   const formData = new FormData(event.target);
-  const searchQuery = Object.fromEntries(formData);
+  searchQuery = Object.fromEntries(formData);
   fetchCharacters(searchQuery.query)
 });
 
