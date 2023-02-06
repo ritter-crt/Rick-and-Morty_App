@@ -1,4 +1,7 @@
 import { createCharacterCard } from "./components/card/card.js";
+import { createSearchBar } from "./components/search-bar/search-bar.js";
+
+createSearchBar()
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -14,6 +17,8 @@ const pagination = document.querySelector('[data-js="pagination"]');
 let maxPage = 1;
 let page = 1;
 let searchQuery = "";
+
+
 
 async function fetchCharacters(searchQuery, pageNumber) {
   try {
