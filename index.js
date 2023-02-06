@@ -1,13 +1,10 @@
 import { createCharacterCard } from "./components/card/card.js";
-
-import { createPrevButton } from "./components/nav-pagination/nav-pagination.js";
-import { createNextButton } from "./components/nav-pagination/nav-pagination.js";
-import { createPagination } from "./components/nav-pagination/nav-pagination.js";
+import { createPagination, createPaginationButton } from "./components/nav-pagination/nav-pagination.js";
 import { createSearchBar } from "./components/search-bar/search-bar.js";
 
-createPrevButton()
+createPaginationButton('prev')
 createPagination()
-createNextButton()
+createPaginationButton('next')
 createSearchBar()
 
 
@@ -16,7 +13,6 @@ const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
 const searchBar = document.querySelector('[data-js="search-bar"]');
-// const navigation = document.querySelector('[data-js="navigation"]');
 const prevButton = document.querySelector('[data-js="button-prev"]');
 const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
