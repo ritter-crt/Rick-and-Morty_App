@@ -8,6 +8,7 @@ export function createCharacterCard(character) {
     console.log(character)
 
     const newCard = document.createElement("li");
+    newCard.classList.add("card")
     newCard.innerHTML = `
             <div class="card__image-container">
                 <img
