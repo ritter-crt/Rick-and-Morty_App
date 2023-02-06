@@ -44,7 +44,7 @@ async function fetchCharacters(searchQuery, pageNumber) {
       }
     })
     maxPage = data.info.pages
-    // pagination.textContent = `${page}/${maxPage}`
+    pagination.textContent = `${page}/${maxPage}`
     refactoredData.forEach((character) => {
       const characterCard = createCharacterCard(character);
       cardContainer.append(characterCard);
@@ -82,6 +82,9 @@ prevButton.addEventListener('click', () => {
 nextButton.addEventListener('click', () => {
   cardContainer.innerHTML = ''
   page++
+  if (page >= maxPage) {
+    page = maxPage
+  }
   fetchCharacters(searchQuery, page)
 })
 
