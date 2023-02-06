@@ -1,38 +1,44 @@
-import { createCharacterCard } from './components/card/card.js'
+import { createCharacterCard } from "./components/card/card.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
 const searchBar = document.querySelector('[data-js="search-bar"]');
-const navigation = document.querySelector('[data-js="navigation"]');
-const prevButton = document.querySelector('[data-js="button-prev"]');
-const nextButton = document.querySelector('[data-js="button-next"]');
-const pagination = document.querySelector('[data-js="pagination"]');
-
+// const navigation = document.querySelector('[data-js="navigation"]');
+// const prevButton = document.querySelector('[data-js="button-prev"]');
+// const nextButton = document.querySelector('[data-js="button-next"]');
+// const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
-const maxPage = 1;
-const page = 1;
-const searchQuery = "";
+let maxPage = 1;
+let page = 1;
+let searchQuery = ""
 
-async function fetchCharecters() {
+async function fetchCharecters(searchQuery) {
   try {
-    const response = await fetch(`https://rickandmortyapi.com/api/character`)
-    const data = await response.json()
-
-    data.results.forEach(character => {
-      const characterCard = createCharacterCard(character)
-      cardContainer.append(characterCard)
+    const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${searchQuery}`);
+    const data = await response.json();
+    
+    data.results.forEach((character) => {
+      const characterCard = createCharacterCard(character);
+      cardContainer.append(characterCard);
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
-// searchBar.addEventListener('submit', (event) => {
-//   event.preventDefault()
-//   console.log('testetstadssfasd')
-// })
+// Searchbar____________________________
+searchBar.addEventListener("submit", (event) => {
+  cardContainer.innerHTML = "";
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const searchQuery = Object.fromEntries(formData);
 
-fetchCharecters()
+  console.log(searchQuery)
+  fetchCharecters(searchQuery.query)
+});
+
+// ____________________________Searchbar
+fetchCharecters("");

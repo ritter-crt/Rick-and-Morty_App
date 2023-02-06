@@ -1,11 +1,9 @@
 export function createCharacterCard(character) {
-    console.log(character)
     const imgSrc = character.image;
     const altName = character.name;
     const cardStatus = character.status;
     const cardType = character.type;
     const cardOccurrence = character.episode.length;
-    console.log(character)
 
     const newCard = document.createElement("li");
     newCard.classList.add("card")
@@ -19,7 +17,7 @@ export function createCharacterCard(character) {
                 <div class="card__image-gradient"></div>
             </div>
             <div class="card__content">
-                <h2 class="card__title">Rick Sanchez</h2>
+                <h2 class="card__title">${altName}</h2>
                 <dl class="card__info">
                 <dt class="card__info-title">Status</dt>
                 <dd class="card__info-description">${cardStatus}</dd> 
