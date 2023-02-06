@@ -1,15 +1,14 @@
-export function createCharacterCard(data) {
-    data.forEach(character => {     
-    const imgSrc = character.image
-    const altName = character.name
-    const cardStatus = character.status
-    const cardType = character.type
-    const cardOccurrence = character.episode.length
+export function createCharacterCard(character) {
+    console.log(character)
+    const imgSrc = character.image;
+    const altName = character.name;
+    const cardStatus = character.status;
+    const cardType = character.type;
+    const cardOccurrence = character.episode.length;
+    console.log(character)
 
-
-    const newCard  = document.createElement("li")
-        newCard.innerHTML = `
-        <li class="card">
+    const newCard = document.createElement("li");
+    newCard.innerHTML = `
             <div class="card__image-container">
                 <img
                 class="card__image"
@@ -28,11 +27,6 @@ export function createCharacterCard(data) {
                 <dt class="card__info-title">Occurrences</dt>
                 <dd class="card__info-description">${cardOccurrence}</dd>
                 </dl>
-            </div>
-            </li>`
-        return newCard
-        })
-        };
-        
-    
-createCharacterCard();
+            </div>`;
+    return newCard;
+  };
