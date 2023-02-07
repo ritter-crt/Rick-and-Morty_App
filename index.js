@@ -10,6 +10,7 @@ createPagination();
 createButtons("next");
 createSearchBar();
 
+
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -24,7 +25,7 @@ let maxPage = 1;
 let page = 1;
 let searchQuery = "";
 
-async function fetchCharacters(searchQuery, pageNumber) {
+export async function fetchCharacters(searchQuery, pageNumber) {
   try {
     const response = await fetch(
       `https://rickandmortyapi.com/api/character/?name=${searchQuery}&page=${pageNumber}`
@@ -51,7 +52,6 @@ async function fetchCharacters(searchQuery, pageNumber) {
   }
 }
 
-// Searchbar____________________________
 searchBar.addEventListener("submit", (event) => {
   cardContainer.innerHTML = "";
   event.preventDefault();
@@ -63,7 +63,6 @@ searchBar.addEventListener("submit", (event) => {
   fetchCharacters(query, page);
 });
 
-// ____________________________Searchbar
 
 const navigator = (event) => {
   cardContainer.innerHTML = "";
@@ -85,3 +84,12 @@ prevButton.addEventListener("click",navigator)
 nextButton.addEventListener("click",navigator)
 
 fetchCharacters("", page);
+
+
+// REFACTORING
+// every DOM Component -> .js file / no import needed from other files
+// for eventListener create addEvenztListener in component inside 
+// function with callback "onClick" / "onSubmit"
+// 
+// 
+// 

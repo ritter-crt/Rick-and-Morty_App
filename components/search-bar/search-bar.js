@@ -1,3 +1,4 @@
+
 export const createSearchBar = () => {
   const main = document.querySelector('main')
   const searchBar = document.createElement('div')
